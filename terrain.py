@@ -31,4 +31,7 @@ def i_am_taken_to_a_login_screen(step):
 def i_am_logged_in(step):
     world.client.login(username='testuser',password='test')
 
+@step(u'the page title is "([^"]*)"')
+def the_page_title_is(step, title):
+    assert world.dom.find(".//title").text == title, world.dom.find(".//title").text
 

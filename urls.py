@@ -18,7 +18,7 @@ urlpatterns = patterns('',
                        # (r'^faktum/', include('faktum.foo.urls')),
 		       auth_urls,
 		       logout_page,
-
+                       (r'^$','faktum.main.views.index'),
                        (r'^admin/', include(admin.site.urls)),
                        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media_root}),
                        (r'^uploads/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.MEDIA_ROOT}),
