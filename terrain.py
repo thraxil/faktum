@@ -87,6 +87,10 @@ def there_is_a_textarea(step, label):
 
 
 @step(u'there is a "([^"]*)" submit button')
-def there_is_a_group1_submit_button(step, group1):
-    assert False, 'This step must be implemented'
+def there_is_a_submit_button(step, label):
+    found = False
+    for i in world.dom.cssselect("input"):
+        if i.attrib['type'] == "submit" and i.attrib["value"] == label:
+            found = True
+    assert found
 
