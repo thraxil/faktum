@@ -65,4 +65,15 @@ def there_is_no_logout_link(step):
 def there_is_a_logout_link(step):
     assert len(world.dom.cssselect("a.logoutlink")) > 0
 
+@step(u'there is a "([^"]*)" form field')
+def there_is_a_form_field(step, group1):
+    assert False, 'This step must be implemented'
+
+@step(u'there is a "([^"]*)" textarea')
+def there_is_a_group1_textarea(step, group1):
+    assert False, 'This step must be implemented'
+
+@step(u'there is a "([^"]*)" submit button')
+def there_is_a_group1_submit_button(step, group1):
+    assert False, 'This step must be implemented'
 
