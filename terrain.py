@@ -71,12 +71,20 @@ def there_is_a_form_field(step, label):
     found = False
     for l in labels:
         if l.text.strip() == label:
-            found = True
+            if l.cssselect("input"):
+                found = True
     assert found
 
 @step(u'there is a "([^"]*)" textarea')
-def there_is_a_group1_textarea(step, group1):
-    assert False, 'This step must be implemented'
+def there_is_a_textarea(step, label):
+    labels = world.dom.cssselect("label")
+    found = False
+    for l in labels:
+        if l.text.strip() == label:
+            if l.cssselect("textarea"):
+                found = True
+    assert found
+
 
 @step(u'there is a "([^"]*)" submit button')
 def there_is_a_group1_submit_button(step, group1):
