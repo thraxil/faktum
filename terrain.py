@@ -57,5 +57,12 @@ def the_text_is_present(step, text):
 def there_is_no_login_link(step):
     assert len(world.dom.cssselect("a.loginlink")) == 0
 
+@step(u'there is no logout link')
+def there_is_no_logout_link(step):
+    assert len(world.dom.cssselect("a.logoutlink")) == 0
+
+@step(u'there is a logout link')
+def there_is_a_logout_link(step):
+    assert len(world.dom.cssselect("a.logoutlink")) > 0
 
 

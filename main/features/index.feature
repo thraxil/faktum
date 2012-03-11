@@ -10,6 +10,7 @@ Just check that the main page loads properly
      Given I am not logged in
      When I access the url "/"
      Then there is a login link
+     And there is no logout link
      And I click on the login link
      Then there is a login form
 
@@ -18,6 +19,7 @@ Just check that the main page loads properly
      When I access the url "/"
      Then the text "logged in as testuser" is present
      And there is no login link
+     And there is a logout link
 
 
      
