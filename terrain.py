@@ -66,8 +66,13 @@ def there_is_a_logout_link(step):
     assert len(world.dom.cssselect("a.logoutlink")) > 0
 
 @step(u'there is a "([^"]*)" form field')
-def there_is_a_form_field(step, group1):
-    assert False, 'This step must be implemented'
+def there_is_a_form_field(step, label):
+    labels = world.dom.cssselect("label")
+    found = False
+    for l in labels:
+        if l.text.strip() == label:
+            found = True
+    assert found
 
 @step(u'there is a "([^"]*)" textarea')
 def there_is_a_group1_textarea(step, group1):
