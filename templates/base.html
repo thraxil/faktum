@@ -28,7 +28,11 @@
 {% endblock %}
 
 {% block usernav %}
+{% if request.user.is_authenticated %}
+logged in as {{request.user.username}}
+{% else %}
 <a class="loginlink" href="/accounts/login/">login</a>
+{% endif %}
 {% endblock %}
 {% endblock %}
 

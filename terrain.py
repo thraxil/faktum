@@ -13,8 +13,8 @@ def setup_browser():
 
 @step(r'I access the url "(.*)"')
 def access_url(step, url):
-    response = world.client.get(django_url(url))
-    world.dom = html.fromstring(response.content)
+    world.response = world.client.get(django_url(url))
+    world.dom = html.fromstring(world.response.content)
 
 @step(u'I am not logged in')
 def i_am_not_logged_in(step):
@@ -48,6 +48,14 @@ def i_click_on_the_login_link(step):
     link = world.dom.cssselect("a.loginlink")[0].attrib['href']
     world.response = world.client.get(django_url(link),follow=True)
     world.dom = html.fromstring(world.response.content)
+
+@step(u'the text "([^"]*)" is present')
+def the_text_is_present(step, text):
+    assert text in world.response.content, world.response.content
+
+@step(u'there is no login link')
+def there_is_no_login_link(step):
+    assert len(world.dom.cssselect("a.loginlink")) == 0
 
 
 
