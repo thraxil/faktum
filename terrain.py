@@ -20,12 +20,16 @@ def access_url(step, url):
 def i_am_not_logged_in(step):
     world.client.logout()
 
-@step(u'I am taken to a login screen')
-def i_am_taken_to_a_login_screen(step):
+@step(u'I am redirected to a login screen')
+def i_am_redirected_to_a_login_screen(step):
     assert len(world.response.redirect_chain) > 0
     (url,status) = world.response.redirect_chain[0]
     assert status == 302, status
     assert "/login/" in url, "URL redirected to was %s" % url
+    
+@step(u'there is a login form')
+def there_is_a_login_form(step):
+    assert len(world.dom.cssselect("form.login")) > 0
 
 @step(u'I am logged in')
 def i_am_logged_in(step):
@@ -34,4 +38,16 @@ def i_am_logged_in(step):
 @step(u'the page title is "([^"]*)"')
 def the_page_title_is(step, title):
     assert world.dom.find(".//title").text == title, world.dom.find(".//title").text
+
+@step(u'there is a login link')
+def there_is_a_login_link(step):
+    assert len(world.dom.cssselect("a.loginlink")) > 0
+
+@step(u'I click on the login link')
+def i_click_on_the_login_link(step):
+    link = world.dom.cssselect("a.loginlink")[0].attrib['href']
+    world.response = world.client.get(django_url(link),follow=True)
+    world.dom = html.fromstring(world.response.content)
+
+
 
