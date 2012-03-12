@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from faktum.main.models import Fact, Tag, FactTag
+from django.db.models import Q
 
 @render_to("main/index.html")
 def index(request):
@@ -29,3 +30,15 @@ def add(request):
         t,created = Tag.objects.get_or_create(name=tag)
         ft = FactTag.objects.create(fact=f,tag=t)
     return HttpResponseRedirect("/")
+
+@render_to("main/search_results.html")
+def search(request):
+    q = request.GET.get('q','')
+    if not q:
+        return HttpResponseRedirect("/")
+    facts = Fact.objects.filter(Q(title__icontains=q) | 
+                                Q(details__icontains=q) |
+                                Q(source_name__icontains=q) |
+                                Q(source_url__icontains=q))
+    tags = Tag.objects.filter(name__icontains=q)
+    return dict(facts=facts,tags=tags,q=q)

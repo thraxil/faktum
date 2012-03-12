@@ -85,3 +85,9 @@ text-align: right;
 color: #fff;
 font-weight: bold;
 }
+#search {
+text-align: right;
+}
+#search input {
+  border: #000 solid 1px;
+}

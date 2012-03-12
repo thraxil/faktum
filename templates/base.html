@@ -24,19 +24,26 @@
 {% endblock %}
 
 {% block primarynav %}
-{% block primarynavtabs %}
-{% endblock %}
+  {% block primarynavtabs %}
+  {% endblock %}
 
-{% block usernav %}
-<div id="usernav">
-{% if request.user.is_authenticated %}
-logged in as {{request.user.username}}
-[<a class="logoutlink" href="/accounts/logout/">Logout</a>]
-{% else %}
-[<a class="loginlink" href="/accounts/login/">login</a>]
-{% endif %}
-</div>
-{% endblock %}
+  {% block usernav %}
+    <div id="usernav">
+      {% if request.user.is_authenticated %}
+        logged in as {{request.user.username}}
+        [<a class="logoutlink" href="/accounts/logout/">Logout</a>]
+      {% else %}
+        [<a class="loginlink" href="/accounts/login/">login</a>]
+      {% endif %}
+    </div>
+  {% endblock %}
+
+  <div id="search">
+    <form action="/search/" method="get">
+      <input type="text" name="q" value="{{q|default:'search'}}" />
+    </form>
+  </div>
+
 {% endblock %}
 
 {% block pagetitle %}{% endblock %}
