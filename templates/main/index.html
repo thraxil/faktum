@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load markup %}
 
 {% block title %}Welcome{% endblock %}
 
@@ -27,5 +28,15 @@
 </form>
 
 <br style="clear: both" />
+
+{% for fact in facts %}
+<div class="fact" id="fact-{{fact.id}}">
+<h2>{{fact.title}}</h2>
+<div class="details">{{fact.details|markdown}}</div>
+<div class="source">{% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
+<div class="added">{{fact.added}}</div>
+</div>
+{% endfor %}
+
 
 {% endblock %}
