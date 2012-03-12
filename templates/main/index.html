@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% load markup %}
-
+{% block js %}
+<script src="/site_media/js/jquery-1.4.2.min.js"></script>
+{% endblock %}
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
 
+<p><a href="#add-form" class="add-form-opener"
+      onclick="window.toggleForm();return false">add fact</a></p>
+<div id="add-form" class="hide">
 <form action="/add/" method="post" class="add-fact">
-
   
   <label class="title">title<br />
     <input type="text" name="title" />
@@ -26,6 +30,7 @@
 
 <input type="submit" value="add fact" />
 </form>
+</div>
 
 <br style="clear: both" />
 
@@ -39,5 +44,9 @@
 <br style="clear: both" />
 {% endfor %}
 
-
+<script>
+var toggleForm = function() {
+  $("#add-form").toggleClass("hide");
+};
+</script>
 {% endblock %}

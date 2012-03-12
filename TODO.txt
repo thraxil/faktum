@@ -1,0 +1,8 @@
+* tags
+* search
+* permalink facts
+* only show first 500 chars of details on index page
+* per-user page
+* browse by source
+* autocomplete source name from existing
+* bookmarklet that takes selected text -> details, and sets source name/url
