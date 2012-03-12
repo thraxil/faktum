@@ -91,3 +91,12 @@ text-align: right;
 #search input {
   border: #000 solid 1px;
 }
+#masthead a {
+display: block;
+background-color: #000;
+color: #fff;
+text-decoration: none;
+font-size: 20px;
+font-weight: bold;
+padding: 2px;
+}
