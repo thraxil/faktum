@@ -27,6 +27,10 @@
   <label class="source-url">source URL<br />
     <input type="text" name="source_url" />
   </label>
+  
+  <label class="tags">Tags<br />
+    <input type="text" name="tags" />
+  </label>
 
 <input type="submit" value="add fact" />
 </form>
@@ -38,6 +42,13 @@
 <div class="fact" id="fact-{{fact.id}}">
 <h2>{{fact.title}}</h2>
 <div class="details">{{fact.details|markdown}}
+{% if fact.facttag_set.count %}
+<div class="tags"><b>Tags:</b>
+{% for ft in fact.facttag_set.all %}
+<a href="{{ft.tag.get_absolute_url}}">{{ft.tag.name}}</a>
+{% endfor %}
+</div>
+{% endif %}
 <div class="source"><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
 <div class="added">added {{fact.added}} by {{fact.user.username}}</div></div>
 </div>

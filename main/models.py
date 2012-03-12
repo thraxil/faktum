@@ -12,6 +12,9 @@ class Fact(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=256)
 
+    def get_absolute_url(self):
+        return "/tag/%d/" % self.id
+
 class FactTag(models.Model):
     fact = models.ForeignKey(Fact)
     tag = models.ForeignKey(Tag)
