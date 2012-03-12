@@ -7,5 +7,6 @@ class Fact(models.Model):
     user = models.ForeignKey(User)
     source_name = models.CharField(max_length=256,default="")
     source_url = models.CharField(max_length=256,default="",blank=True,null=True)
+    added = models.DateTimeField(auto_now_add=True,editable=False)
 
 
