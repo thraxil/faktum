@@ -42,3 +42,8 @@ def search(request):
                                 Q(source_url__icontains=q))
     tags = Tag.objects.filter(name__icontains=q)
     return dict(facts=facts,tags=tags,q=q)
+
+@render_to("main/fact.html")
+def fact(request,fact_id):
+    f = get_object_or_404(Fact,id=fact_id)
+    return dict(fact=f)
