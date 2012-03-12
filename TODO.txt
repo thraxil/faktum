@@ -1,5 +1,3 @@
-* search
-* permalink facts
 * only show first 500 chars of details on index page
 * per-user page
 * browse by source
