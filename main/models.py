@@ -9,4 +9,9 @@ class Fact(models.Model):
     source_url = models.CharField(max_length=256,default="",blank=True,null=True)
     added = models.DateTimeField(auto_now_add=True,editable=False)
 
+class Tag(models.Model):
+    name = models.CharField(max_length=256)
 
+class FactTag(models.Model):
+    fact = models.ForeignKey(Fact)
+    tag = models.ForeignKey(Tag)
