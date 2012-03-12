@@ -28,12 +28,14 @@
 {% endblock %}
 
 {% block usernav %}
+<div id="usernav">
 {% if request.user.is_authenticated %}
 logged in as {{request.user.username}}
-<a class="logoutlink" href="/accounts/logout/">Logout</a>
+[<a class="logoutlink" href="/accounts/logout/">Logout</a>]
 {% else %}
-<a class="loginlink" href="/accounts/login/">login</a>
+[<a class="loginlink" href="/accounts/login/">login</a>]
 {% endif %}
+</div>
 {% endblock %}
 {% endblock %}
 
