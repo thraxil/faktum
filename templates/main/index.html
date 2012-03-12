@@ -32,10 +32,11 @@
 {% for fact in facts %}
 <div class="fact" id="fact-{{fact.id}}">
 <h2>{{fact.title}}</h2>
-<div class="details">{{fact.details|markdown}}</div>
-<div class="source">{% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
-<div class="added">{{fact.added}}</div>
+<div class="details">{{fact.details|markdown}}
+<div class="source"><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
+<div class="added">added {{fact.added}} by {{fact.user.username}}</div></div>
 </div>
+<br style="clear: both" />
 {% endfor %}
 
 

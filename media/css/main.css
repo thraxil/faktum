@@ -46,5 +46,22 @@ label.source-url {
 width: 400px;
 display: block;
 float:left;
+}
 
+.fact {
+width: 950px;
+border-top: #ccc solid 1px;
+}
+
+.fact h2 {
+width: 400px;
+float: left;
+}
+.fact .details {
+width: 400px;
+float: left;
+}
+.fact .added {
+color: #ddd;
+font-style: italic;
 }
