@@ -7,7 +7,11 @@ from django.db.models import Q
 
 @render_to("main/index.html")
 def index(request):
-    return dict(facts=Fact.objects.all().order_by("-added")[:20])
+    return dict(facts=Fact.objects.all().order_by("-added")[:20],
+                source_url=request.GET.get('source_url',''),
+                source_name=request.GET.get('source_name',''),
+                details=request.GET.get('details',''),
+                )
 
 @render_to("main/tag.html")
 def tag(request,tag_id):

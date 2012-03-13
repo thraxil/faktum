@@ -9,7 +9,7 @@
 
 <p><a href="#add-form" class="add-form-opener"
       onclick="window.toggleForm();return false">add fact</a></p>
-<div id="add-form" class="hide">
+<div id="add-form" class="{% if not source_url %}hide{% endif %}">
 <form action="/add/" method="post" class="add-fact">
   
   <label class="title">title<br />
@@ -17,15 +17,15 @@
   </label>
 
   <label class="details">details<br />
-    <textarea name="details" rows="5"></textarea>
+    <textarea name="details" rows="5">{{details}}</textarea>
   </label>
 
   <label class="source-name">source name<br />
-    <input type="text" name="source_name" />
+    <input type="text" name="source_name" value="{{source_name}}"/>
   </label>
 
   <label class="source-url">source URL<br />
-    <input type="text" name="source_url" />
+    <input type="text" name="source_url" value="{{source_url}}"/>
   </label>
   
   <label class="tags">Tags<br />
@@ -34,6 +34,8 @@
 
 <input type="submit" value="add fact" />
 </form>
+
+(<a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">bookmarklet</a>)
 </div>
 
 <br style="clear: both" />

@@ -1,13 +1,12 @@
+* pagination
 * only show first 500 chars of details on index page
 * per-user page
 * browse by source
 * autocomplete source name from existing
 * bookmarklet that takes selected text -> details, and sets source name/url
-* self-registration for users
 * per-user Atom feeds
 * edit fact
 * delete fact
-* pagination
 * switch add-form to use default values instead of labels
 * tag autocomplete
 * tagcloud
