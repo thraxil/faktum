@@ -40,7 +40,7 @@
 
 <br style="clear: both" />
 
-{% for fact in facts %}
+{% for fact in facts.object_list %}
 <div class="fact" id="fact-{{fact.id}}">
 <h2>{{fact.title}}</h2>
 <div class="details">{{fact.details|markdown}}
@@ -56,6 +56,22 @@
 </div>
 <br style="clear: both" />
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if facts.has_previous %}
+            <a href="?page={{ facts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ facts.number }} of {{ facts.paginator.num_pages }}.
+        </span>
+
+        {% if facts.has_next %}
+            <a href="?page={{ facts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 
 <script>
 var toggleForm = function() {

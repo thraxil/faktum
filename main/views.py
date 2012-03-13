@@ -4,10 +4,22 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from faktum.main.models import Fact, Tag, FactTag
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @render_to("main/index.html")
 def index(request):
-    return dict(facts=Fact.objects.all().order_by("-added")[:20],
+    paginator = Paginator(Fact.objects.all().order_by("-added"),20)
+    page = request.GET.get('page','1')
+    try:
+        facts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        facts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        facts = paginator.page(paginator.num_pages)    
+
+    return dict(facts=facts,
                 source_url=request.GET.get('source_url',''),
                 source_name=request.GET.get('source_name',''),
                 details=request.GET.get('details',''),
