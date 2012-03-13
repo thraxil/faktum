@@ -82,7 +82,7 @@ LETTUCE_APPS = (
 
 EMAIL_SUBJECT_PREFIX = "[faktum] "
 EMAIL_HOST = 'localhost'
-SERVER_EMAIL = "faktum@ccnmtl.columbia.edu"
+SERVER_EMAIL = "faktum@thraxil.org"
 
 COMPRESS_URL = "/site_media/"
 COMPRESS_ROOT = "media/"
