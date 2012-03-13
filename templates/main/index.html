@@ -3,49 +3,65 @@
 {% block js %}
 <script src="/site_media/js/jquery-1.4.2.min.js"></script>
 {% endblock %}
+
+{% block css %}
+<style type="text/css">
+.add-fact input { width: 100%; }
+.add-fact textarea { width: 100%; }
+
+</style>
+{% endblock %}
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
 
 <p><a href="#add-form" class="add-form-opener"
-      onclick="window.toggleForm();return false">add fact</a></p>
+      onclick="window.toggleForm();return false"><i class="icon-plus"></i>add fact</a></p>
 <div id="add-form" class="{% if not source_url %}hide{% endif %}">
 <form action="/add/" method="post" class="add-fact">
-  
-  <label class="title">title<br />
-    <input type="text" name="title" />
-  </label>
 
-  <label class="details">details<br />
-    <textarea name="details" rows="5">{{details}}</textarea>
-  </label>
+<div class="row">
+  <div class="span6">  
+      <input type="text" name="title" placeholder="title" />
+  </div>
 
-  <label class="source-name">source name<br />
-    <input type="text" name="source_name" value="{{source_name}}"/>
-  </label>
+  <div class="span6">
+      <textarea name="details" rows="5" placeholder="details">{{details}}</textarea>
+  </div>
+</div>
 
-  <label class="source-url">source URL<br />
-    <input type="text" name="source_url" value="{{source_url}}"/>
-  </label>
-  
-  <label class="tags">Tags<br />
-    <input type="text" name="tags" />
-  </label>
+<div class="row">
+  <div class="span6">
+      <input type="text" name="source_name" value="{{source_name}}"
+      placeholder="source name"/>
+  </div>
+  <div class="span6">
+      <input type="text" name="source_url" value="{{source_url}}"
+      placeholder="source URL"/>
+  </div>
+</div>
 
-<input type="submit" value="add fact" />
+<div class="row">
+<div class="span6">
+    <input type="text" name="tags" placeholder="tags" />
+</div>
+<div class="span6">
+<input type="submit" value="add fact" class="btn btn-primary" />
 </form>
 
 (<a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">bookmarklet</a>)
+</div>
+</div>
 </div>
 
 <br style="clear: both" />
 
 {% for fact in facts.object_list %}
-<div class="fact" id="fact-{{fact.id}}">
-<h2>{{fact.title}}</h2>
-<div class="details">{{fact.details|markdown}}
+<div class="fact row" id="fact-{{fact.id}}">
+<div class="span6"><h2>{{fact.title}}</h2></div>
+<div class="span6 details">{{fact.details|markdown}}
 {% if fact.facttag_set.count %}
-<div class="tags"><b>Tags:</b>
+<div class="tags"><i class="icon-tags"></i> <b>Tags:</b>
 {% for ft in fact.facttag_set.all %}
 <a href="{{ft.tag.get_absolute_url}}">{{ft.tag.name}}</a>
 {% endfor %}
@@ -54,7 +70,7 @@
 <div class="source"><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
 <div class="added">added <a href="{{fact.get_absolute_url}}">{{fact.added}}</a> by {{fact.user.username}}</div></div>
 </div>
-<br style="clear: both" />
+
 {% endfor %}
 
 <div class="pagination">

@@ -6,11 +6,12 @@
 <h1>Tag: {{tag.name}}</h1>
 
 {% for fact in facts %}
-<div class="fact" id="fact-{{fact.id}}">
-<h2>{{fact.title}}</h2>
-<div class="details">{{fact.details|markdown}}
+
+<div class="fact row" id="fact-{{fact.id}}">
+<div class="span6"><h2>{{fact.title}}</h2></div>
+<div class="span6 details">{{fact.details|markdown}}
 {% if fact.facttag_set.count %}
-<div class="tags"><b>Tags:</b>
+<div class="tags"><i class="icon-tags"></i> <b>Tags:</b>
 {% for ft in fact.facttag_set.all %}
 <a href="{{ft.tag.get_absolute_url}}">{{ft.tag.name}}</a>
 {% endfor %}
@@ -19,7 +20,7 @@
 <div class="source"><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
 <div class="added">added <a href="{{fact.get_absolute_url}}">{{fact.added}}</a> by {{fact.user.username}}</div></div>
 </div>
-<br style="clear: both" />
+
 {% endfor %}
 
 {% endblock %}
