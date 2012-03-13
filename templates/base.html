@@ -36,7 +36,8 @@
         logged in as {{request.user.username}}
         [<a class="logoutlink" href="/accounts/logout/">Logout</a>]
       {% else %}
-        [<a class="loginlink" href="/accounts/login/?next=/">login</a>]
+        [<a class="loginlink" href="/accounts/login/?next=/">Login</a>] or 
+        [<a href="/registration/register/">Register</a>]
       {% endif %}
     </div>
   {% endblock %}

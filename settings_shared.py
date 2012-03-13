@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'compressor',
     'lettuce.django',
     'faktum.main',
+    'registration',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
