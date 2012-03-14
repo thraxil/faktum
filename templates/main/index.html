@@ -75,21 +75,21 @@
 
 {% endfor %}
 
-<div class="pagination">
-    <span class="step-links">
-        {% if facts.has_previous %}
-            <a href="?page={{ facts.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ facts.number }} of {{ facts.paginator.num_pages }}.
-        </span>
-
-        {% if facts.has_next %}
-            <a href="?page={{ facts.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
+<ul class="pager">
+    {% if facts.has_previous %}
+    <li>
+      <a href="?page={{ facts.previous_page_number }}"><i class="icon-arrow-left"></i> previous</a>
+    </li>
+    {% endif %}
+    <li class="current">
+      Page {{ facts.number }} of {{ facts.paginator.num_pages }}.
+    </li>
+    {% if facts.has_next %}
+    <li>
+      <a href="?page={{ facts.next_page_number }}">next <i class="icon-arrow-right"></i></a>
+    </li>
+    {% endif %}
+</ul>
 
 <script>
 var toggleForm = function() {
