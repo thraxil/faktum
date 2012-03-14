@@ -1,5 +1,4 @@
 * only show first 500 chars of details on index page
-* per-user page
 * browse by source
 * autocomplete source name from existing
 * per-user Atom feeds

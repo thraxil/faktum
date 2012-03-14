@@ -17,7 +17,7 @@ Just check that the main page loads properly
      Scenario: Logged in
      Given I am logged in
      When I access the url "/"
-     Then the text "logged in as testuser" is present
+     Then the text "testuser" is present
      And there is no login link
      And there is a logout link
 

@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from faktum.main.models import Fact, Tag, FactTag
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
 
 @render_to("main/index.html")
 def index(request):
@@ -29,6 +30,11 @@ def index(request):
 def tag(request,tag_id):
     tag = get_object_or_404(Tag,id=tag_id)
     return dict(tag=tag,facts=[ft.fact for ft in tag.facttag_set.all().order_by("-fact__added")[:20]])
+
+@render_to("main/user.html")
+def user(request,username):
+    user = get_object_or_404(User,username=username)
+    return dict(user=user,facts=Fact.objects.filter(user=user).order_by("-added"))
 
 @login_required
 def add(request):

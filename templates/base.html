@@ -61,7 +61,7 @@
               <li><a href="/tag/">Tags</a></li>
             </ul>
 <p class="navbar-text pull-right">      {% if request.user.is_authenticated %}
-        logged in as {{request.user.username}}
+        logged in as <a href="/user/{{request.user.username}}/">{{request.user.username}}</a>
         [<a class="logoutlink" href="/accounts/logout/">Logout</a>]
       {% else %}
         [<a class="loginlink" href="/accounts/login/?next=/">Login</a>]
