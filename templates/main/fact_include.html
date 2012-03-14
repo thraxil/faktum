@@ -1,7 +1,8 @@
 {% load markup %}
+{% load typogrify %}
 <div class="fact row" id="fact-{{fact.id}}">
 <div class="span6"><h2>{{fact.title}}</h2></div>
-<div class="span6 details">{{fact.details|markdown}}
+<div class="span6 details">{{fact.details|markdown|typogrify}}
 {% if fact.facttag_set.count %}
 <div class="tags"><i class="icon-tags"></i> <b>Tags:</b>
 {% for ft in fact.facttag_set.all %}
