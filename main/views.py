@@ -63,3 +63,7 @@ def search(request):
 def fact(request,fact_id):
     f = get_object_or_404(Fact,id=fact_id)
     return dict(fact=f)
+
+@render_to("main/tags.html")
+def tags(request):
+    return dict(tags=Tag.objects.all().order_by("name"))

@@ -7,4 +7,4 @@
 * delete fact
 * switch add-form to use default values instead of labels
 * tag autocomplete
-* tagcloud
+

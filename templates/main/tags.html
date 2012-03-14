@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load markup %}
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+<h2>Tags</h2>
+
+<ul>
+{% for tag in tags %}
+<li><a href="{{tag.get_absolute_url}}">{{tag.name}}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
