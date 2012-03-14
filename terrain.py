@@ -67,22 +67,20 @@ def there_is_a_logout_link(step):
 
 @step(u'there is a "([^"]*)" form field')
 def there_is_a_form_field(step, label):
-    labels = world.dom.cssselect("label")
+    fields = world.dom.cssselect("input")
     found = False
-    for l in labels:
-        if l.text.strip() == label:
-            if l.cssselect("input"):
-                found = True
+    for f in fields:
+        if f.attrib.get('placeholder','') == label:
+            found = True
     assert found
 
 @step(u'there is a "([^"]*)" textarea')
 def there_is_a_textarea(step, label):
-    labels = world.dom.cssselect("label")
+    textareas = world.dom.cssselect("textarea")
     found = False
-    for l in labels:
-        if l.text.strip() == label:
-            if l.cssselect("textarea"):
-                found = True
+    for t in textareas:
+        if t.attrib.get('placeholder','') == label:
+            found = True
     assert found
 
 

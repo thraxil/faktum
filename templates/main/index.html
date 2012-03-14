@@ -15,6 +15,7 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
 <p><a href="#add-form" class="add-form-opener"
       onclick="window.toggleForm();return false"><i class="icon-plus"></i>add fact</a></p>
 <div id="add-form" class="{% if not source_url %}hide{% endif %}">
@@ -55,6 +56,7 @@
 </div>
 
 <br style="clear: both" />
+{% endif %}
 
 {% for fact in facts.object_list %}
 <div class="fact row" id="fact-{{fact.id}}">
