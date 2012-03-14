@@ -5,6 +5,10 @@ border-top: #ccc solid 1px;
 
 .fact .added {
 font-style: italic;
+color: #bbb;
+}
+.fact .added a {
+color: #66f;
 }
 
 .hide {
