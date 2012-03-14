@@ -4,6 +4,5 @@
 * per-user Atom feeds
 * edit fact
 * delete fact
-* switch add-form to use default values instead of labels
 * tag autocomplete
 
