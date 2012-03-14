@@ -59,21 +59,7 @@
 {% endif %}
 
 {% for fact in facts.object_list %}
-<div class="fact row" id="fact-{{fact.id}}">
-<div class="span6"><h2>{{fact.title}}</h2></div>
-<div class="span6 details">{{fact.details|markdown}}
-{% if fact.facttag_set.count %}
-<div class="tags"><i class="icon-tags"></i> <b>Tags:</b>
-{% for ft in fact.facttag_set.all %}
-<a href="{{ft.tag.get_absolute_url}}">{{ft.tag.name}}</a>
-{% endfor %}
-</div>
-{% endif %}
-<div class="source"><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
-<div class="added">added <a href="{{fact.get_absolute_url}}">{{fact.added}}</a>
-  by <a href="/user/{{fact.user.username}}/">{{fact.user.username}}</a></div></div>
-</div>
-
+{% include "main/fact_include.html" %}
 {% endfor %}
 
 <ul class="pager">

@@ -5,4 +5,5 @@
 * edit fact
 * delete fact
 * tag autocomplete
+* google analytics
 
