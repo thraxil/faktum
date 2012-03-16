@@ -19,45 +19,46 @@
 {% if not request.user.is_authenticated %}
 <a href="/registration/register/">Register now to get started</a>.
 Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
+{% else %}
+ <a href="#add-form" class="add-form-opener" onclick="window.toggleForm();return false">Add fact</a>
 {% endif %}
 </p>
 
 {% if request.user.is_authenticated %}
-<p><a href="#add-form" class="add-form-opener"
-      onclick="window.toggleForm();return false"><i class="icon-plus"></i>add fact</a></p>
+
 <div id="add-form" class="{% if not source_url %}hide{% endif %}">
-<form action="/add/" method="post" class="add-fact">
+<form action="/add/" method="post" class="add-fact well">
 
 <div class="row">
-  <div class="span6">  
+  <div class="span5 offset1">  
       <input type="text" name="title" placeholder="title" />
   </div>
 
-  <div class="span6">
+  <div class="span5">
       <textarea name="details" rows="5" placeholder="details">{{details}}</textarea>
   </div>
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="span5 offset1">
       <input type="text" name="source_name" value="{{source_name}}"
       placeholder="source name"/>
   </div>
-  <div class="span6">
+  <div class="span5">
       <input type="text" name="source_url" value="{{source_url}}"
       placeholder="source URL"/>
   </div>
 </div>
 
 <div class="row">
-<div class="span6">
+<div class="span5 offset1">
     <input type="text" name="tags" placeholder="tags" />
 </div>
-<div class="span6">
+<div class="span5">
 <input type="submit" value="add fact" class="btn btn-primary" />
 </form>
 
-(<a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">bookmarklet</a>)
+(<b>bookmarklet</b>. drag this onto your browser toolbar: <a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">add fakt</a>)
 </div>
 </div>
 </div>
