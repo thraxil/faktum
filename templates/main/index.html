@@ -15,6 +15,13 @@
 
 {% block content %}
 
+<p class="lead">Track the facts you learn.
+{% if not request.user.is_authenticated %}
+<a href="/registration/register/">Register now to get started</a>.
+Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
+{% endif %}
+</p>
+
 {% if request.user.is_authenticated %}
 <p><a href="#add-form" class="add-form-opener"
       onclick="window.toggleForm();return false"><i class="icon-plus"></i>add fact</a></p>
