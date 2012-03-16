@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 <div class="source"><i class="icon-bookmark"></i><b>Source</b>: {% if fact.source_url %}<a href="{{fact.source_url}}">{% endif %}{{fact.source_name}}{% if fact.source_url %}</a>{% endif %}</div>
-<div class="added"><i class="icon-chevron-right"></i>added <a href="{{fact.get_absolute_url}}">{{fact.added}}</a>
+<div class="added"><i class="icon-chevron-right"></i>added <a href="{{fact.get_absolute_url}}">{{fact.added|date:"H:i"}}</a>
   by <a href="/user/{{fact.user.username}}/">{{fact.user.username}}</a></div></div>
 </div>
 

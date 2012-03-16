@@ -66,6 +66,7 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
 {% endif %}
 
 {% for fact in facts.object_list %}
+{% ifchanged fact.added.date %}<div class="row day-sep">{{fact.added|date:"M d, Y"}}</div>{% endifchanged %}
 {% include "main/fact_include.html" %}
 {% endfor %}
 

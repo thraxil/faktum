@@ -14,3 +14,7 @@ color: #66f;
 .hide {
 display: none;
 }
+
+.day-sep {
+  color: #666;
+}
