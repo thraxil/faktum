@@ -71,11 +71,7 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
 {% include "main/fact_include.html" %}
 {% endfor %}
 
-<div class="bumper"></div>
 
-<div class="navbar navbar-fixed-bottom">
-<div class="navbar-inner">
-    <div class="container">
 <ul class="pager">
     {% if facts.has_previous %}
     <li>
@@ -91,9 +87,7 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
     </li>
     {% endif %}
 </ul>
-</div>
-</div>
-</div>
+
 
 <script>
 var toggleForm = function() {

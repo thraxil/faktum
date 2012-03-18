@@ -19,10 +19,7 @@ display: none;
   color: #666;
 }
 
-.add-fact {
-
+.pager {
+margin-top: 2em;
 }
 
-.bumper {
-  height: 100px;
-}
