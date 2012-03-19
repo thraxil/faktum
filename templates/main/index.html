@@ -1,13 +1,8 @@
 {% extends 'base.html' %}
 {% load markup %}
-{% block js %}
-<script src="/site_media/js/jquery-1.4.2.min.js"></script>
-{% endblock %}
-
 {% block css %}
 <style type="text/css">
-.add-fact input { width: 100%; }
-.add-fact textarea { width: 100%; }
+
 
 </style>
 {% endblock %}
@@ -15,56 +10,42 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+
+<div id="add-form" class="modal {% if not source_url %}hide{% endif %} fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Add Fact</h3>
+  </div>
+
+<form action="/add/" method="post" class="add-fact well">
+<div class="modal-body">
+      <input type="text" name="title" placeholder="title" />
+      <textarea name="details" rows="5" placeholder="details">{{details}}</textarea>
+      <input type="text" name="source_name" value="{{source_name}}" placeholder="source name"/>
+      <input type="text" name="source_url" value="{{source_url}}" placeholder="source URL"/>
+      <input type="text" name="tags" placeholder="tags" />
+     (<b>bookmarklet</b>. drag this onto your browser toolbar: <a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">add fakt</a>)
+</div>
+
+<div class="modal-footer">
+  <a href="add-form" class="btn" data-dismiss="modal">Close</a>
+  <input type="submit" value="add fact" class="btn btn-primary" />
+</div>
+</form>
+</div>
+{% endif %}
+
+
 <p class="lead">Track the facts you learn.
 {% if not request.user.is_authenticated %}
 <a href="/registration/register/">Register now to get started</a>.
 Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
 {% else %}
- <a href="#add-form" class="add-form-opener" onclick="window.toggleForm();return false">Add fact</a>
+ <a href="#add-form" class="btn" data-toggle="modal">Add fact</a>
 {% endif %}
 </p>
 
-{% if request.user.is_authenticated %}
-
-<div id="add-form" class="{% if not source_url %}hide{% endif %}">
-<form action="/add/" method="post" class="add-fact well">
-
-<div class="row">
-  <div class="span5 offset1">  
-      <input type="text" name="title" placeholder="title" />
-  </div>
-
-  <div class="span5">
-      <textarea name="details" rows="5" placeholder="details">{{details}}</textarea>
-  </div>
-</div>
-
-<div class="row">
-  <div class="span5 offset1">
-      <input type="text" name="source_name" value="{{source_name}}"
-      placeholder="source name"/>
-  </div>
-  <div class="span5">
-      <input type="text" name="source_url" value="{{source_url}}"
-      placeholder="source URL"/>
-  </div>
-</div>
-
-<div class="row">
-<div class="span5 offset1">
-    <input type="text" name="tags" placeholder="tags" />
-</div>
-<div class="span5">
-<input type="submit" value="add fact" class="btn btn-primary" />
-</form>
-
-(<b>bookmarklet</b>. drag this onto your browser toolbar: <a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">add fakt</a>)
-</div>
-</div>
-</div>
-
-<br style="clear: both" />
-{% endif %}
 
 {% for fact in facts.object_list %}
 {% ifchanged fact.added.date %}<div class="row day-sep">{{fact.added|date:"M d, Y"}}</div>{% endifchanged %}
@@ -88,10 +69,11 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
     {% endif %}
 </ul>
 
-
+{% endblock %}
+{% block js %}
 <script>
-var toggleForm = function() {
-  $("#add-form").toggleClass("hide");
-};
+  $(document).ready(function () {
+   {% if source_url %}$('#add-fact').modal('show');{% endif %}
+    });
 </script>
 {% endblock %}

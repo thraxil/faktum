@@ -11,10 +11,6 @@ color: #bbb;
 color: #66f;
 }
 
-.hide {
-display: none;
-}
-
 .day-sep {
   color: #666;
 }
@@ -23,3 +19,9 @@ display: none;
 margin-top: 2em;
 }
 
+.modal-body input {
+width: 95%;
+}
+.modal-body textarea {
+width: 95%;
+}
