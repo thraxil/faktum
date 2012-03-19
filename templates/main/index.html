@@ -20,12 +20,12 @@
 
 <form action="/add/" method="post" class="add-fact well">
 <div class="modal-body">
-      <input type="text" name="title" placeholder="title" />
+      <input type="text" name="title" placeholder="title/cue" />
       <textarea name="details" rows="5" placeholder="details">{{details}}</textarea>
       <input type="text" name="source_name" value="{{source_name}}" placeholder="source name"/>
       <input type="text" name="source_url" value="{{source_url}}" placeholder="source URL"/>
       <input type="text" name="tags" placeholder="tags" />
-     (<b>bookmarklet</b>. drag this onto your browser toolbar: <a href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">add fakt</a>)
+     (<b>bookmarklet</b>: <a rel="tooltip" title="drag this onto your browser toolbar" href="javascript:window.location='http://faktum.thraxil.org/?source_url='+escape(window.location)+';source_name='+escape(document.title)+';details='+escape((window.getSelection)?window.getSelection():document.getSelection());">add fakt</a>)
 </div>
 
 <div class="modal-footer">
@@ -73,6 +73,10 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
 {% block js %}
 <script>
   $(document).ready(function () {
+  var show = {% if source_url %}true{% else %}{% endif %};
+  $('#add-fact').modal({
+    show: show
+  });
    {% if source_url %}$('#add-fact').modal('show');{% endif %}
     });
 </script>
