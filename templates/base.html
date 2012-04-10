@@ -56,6 +56,9 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="/tag/">Tags</a></li>
+{% if request.user.is_authenticated %}
+							<li><a href="/multiadd/">Add Multiple</a></li>
+{% endif %}
             </ul>
 <p class="navbar-text pull-right">      {% if request.user.is_authenticated %}
         logged in as <a href="/user/{{request.user.username}}/">{{request.user.username}}</a>

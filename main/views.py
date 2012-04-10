@@ -53,6 +53,35 @@ def add(request):
         ft = FactTag.objects.create(fact=f,tag=t)
     return HttpResponseRedirect("/")
 
+@login_required
+@render_to("main/multiadd.html")
+def multiadd(request):
+    if request.method != "POST":
+        return dict()
+    else:
+        source_name = request.POST.get('source_name','')
+        source_url = request.POST.get('source_url','')
+        for k in request.POST.keys():
+            if not k.startswith('title-'):
+                continue
+            idx = int(k[len("title-"):])
+            if not request.POST[k]:
+                continue
+            f = Fact.objects.create(title=request.POST.get("title-%d" % idx,''),
+                                    details=request.POST.get("details-%d" % idx,''),
+                                    source_name=source_name,
+                                    source_url=source_url,
+                                    user=request.user,
+                                    )
+            tags_field = request.POST.get("tags-%d" % idx,'')
+            for tag in tags_field.split(','):
+                tag = tag.strip().lower()
+                t,created = Tag.objects.get_or_create(name=tag)
+                ft = FactTag.objects.create(fact=f,tag=t)
+            
+        return HttpResponseRedirect("/")
+
+
 @render_to("main/search_results.html")
 def search(request):
     q = request.GET.get('q','')

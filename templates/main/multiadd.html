@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Multiple Facts from one Source</h1>
+<form action="/multiadd/" method="post" class="add-facts">
+
+<div id="source-input" class="well">
+      <input type="text" name="source_name" value="{{source_name}}" placeholder="source name"/>
+      <input type="text" name="source_url" value="{{source_url}}" placeholder="source URL"/>
+</div>
+
+<div class="fact-input well" id="fact-input-0">
+       <input type="text" name="title-0" placeholder="title/cue" class="title-input" />
+      <textarea name="details-0" rows="5" placeholder="details"></textarea>
+      <input type="text" name="tags-0" placeholder="tags" />
+</div>
+
+<div id="insert-point"></div>
+
+<div class="modal-footer">
+  <input type="submit" value="add facts" class="btn btn-primary" />
+</div>
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script src="/site_media/js/multiadd.js" type="application/javascript"></script>
+{% endblock %}
