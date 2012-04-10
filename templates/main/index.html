@@ -73,7 +73,7 @@ Or <a href="/accounts/login/?next=/">Login</a> if you already have an account.
 {% block js %}
 <script>
   $(document).ready(function () {
-  var show = {% if source_url %}true{% else %}{% endif %};
+  var show = {% if source_url %}true{% else %}false{% endif %};
   $('#add-fact').modal({
     show: show
   });
