@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'lettuce.django',
     'faktum.main',
     'registration',
+    'django_statsd',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -130,3 +131,9 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True
+
+STATSD_CLIENT = 'statsd.client'
+STATSD_PREFIX = 'faktum'
+STATSD_HOST = '127.0.0.1'
+STATSD_PORT = 8125
+STATSD_PATCHES = ['django_statsd.patches.db', ]
