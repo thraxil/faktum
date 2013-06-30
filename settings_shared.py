@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'faktum.main',
     'registration',
     'django_statsd',
+    'gunicorn',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
