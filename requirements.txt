@@ -33,3 +33,5 @@ django-appconf==0.4.1
 django_compressor==1.1.1
 django-registration==0.8-alpha-1
 django-statsd-mozilla==0.3.3
+paramiko==1.10.1
+Fabric==1.6.1
